@@ -20,6 +20,12 @@ public class Entity : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             EntityDamaged(1);
+            Destroy(gameObject);
+        }
+
+        if (other.CompareTag("End"))
+        {
+
         }
     }
 

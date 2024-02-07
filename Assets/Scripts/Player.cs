@@ -4,4 +4,8 @@ public class Player : Entity
     {
         base.Start();
     }
+    protected override void Update()
+    {
+        base.Update();
+    }
 }
