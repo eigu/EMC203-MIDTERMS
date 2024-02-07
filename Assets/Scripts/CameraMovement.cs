@@ -6,6 +6,6 @@ public class CameraMovement : MonoBehaviour
 
     private void LateUpdate()
     {
-        IMoveable.Move(transform, Vector3.right, speed);
+        IMovable.Move(transform, Vector3.right, speed);
     }
 }

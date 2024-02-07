@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Obstacle : Entity, IMoveable
+public class Obstacle : Entity
 {
     protected override void Start()
     {
@@ -10,5 +10,7 @@ public class Obstacle : Entity, IMoveable
     protected override void Update()
     {
         base.Update();
+
+        Destroy(gameObject, 5f);
     }
 }

@@ -169,13 +169,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb53ed48adca614c997fbfdefacd62b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 330585545}
   obstaclePrefabs:
   - {fileID: 6260824471364105420, guid: fec28b94d75bcdd479a3632a4b211b09, type: 3}
   - {fileID: 7704181678436368251, guid: 90235c9ca3fe0e4429bfa5b5ea775005, type: 3}
-  playerTransform: {fileID: 1462576974}
-  mainCamera: {fileID: 330585545}
-  spawnOffset: 10
-  lastSpawnPositionX: 0
+  - {fileID: 1041803199959140, guid: 21937fa0c6b94544796aa921e19f5091, type: 3}
+  - {fileID: 1040074329139878, guid: 38f60ab6f4a896b44b008352681ac340, type: 3}
+  obstaclePerWave: 3
+  waveInterval: 2
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,7 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b85ca3f57157b64d8550ed9aa117672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 40
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0

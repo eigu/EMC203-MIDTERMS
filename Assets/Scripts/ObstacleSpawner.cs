@@ -3,55 +3,42 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> obstaclePrefabs;
-    [SerializeField] private Transform playerTransform;
     [SerializeField] private Camera mainCamera;
-    [SerializeField] private float spawnOffset;
 
-    [SerializeField] private float lastSpawnPositionX;
+    [SerializeField] private List<GameObject> obstaclePrefabs;
 
-    private float spawnTimer;
+    [SerializeField] private int obstaclePerWave;
+    [SerializeField] private float waveInterval;
+    private float waveTimer;
 
     private void Start()
     {
-        lastSpawnPositionX = playerTransform.position.x;
-        spawnTimer = Random.Range(1, 4);
+        waveTimer = waveInterval;
     }
 
     private void Update()
     {
-        spawnTimer -= Time.deltaTime;
+        waveTimer -= Time.deltaTime;
 
-        float spawnPositionX = GetCameraRightEdge();
-
-        if (spawnPositionX > lastSpawnPositionX
-            && !IsInCameraView(spawnPositionX)
-            && spawnTimer <= 0)
+        if (waveTimer <= 0)
         {
-            float spawnHeight = Random.Range(-mainCamera.orthographicSize, mainCamera.orthographicSize);
-
-            SpawnObstacle(spawnPositionX, spawnHeight);
-
-            lastSpawnPositionX = spawnPositionX;
-            spawnTimer = Random.Range(1, 4);
+            SpawnWave();
+            waveTimer = waveInterval;
         }
     }
 
-    private void SpawnObstacle(float xPosition, float yPosition)
+    void SpawnWave()
     {
-        GameObject obstaclePrefab = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Count)];
+        for (int i = 0; i < obstaclePerWave; i++)
+        {
+            float spawnHeight = Random.Range(-mainCamera.orthographicSize, mainCamera.orthographicSize);
 
-        Instantiate(obstaclePrefab, new Vector3(xPosition, yPosition, 0f), Quaternion.identity);
-    }
+            float cameraWidth = mainCamera.orthographicSize * mainCamera.aspect;
+            float rightEdge = mainCamera.transform.position.x + cameraWidth;
 
-    private bool IsInCameraView(float xPosition)
-    {
-        return xPosition <= GetCameraRightEdge();
-    }
+            GameObject obstaclePrefab = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Count)];
 
-    private float GetCameraRightEdge()
-    {
-        float cameraWidth = mainCamera.orthographicSize * mainCamera.aspect;
-        return mainCamera.transform.position.x + cameraWidth;
+            Instantiate(obstaclePrefab, new Vector3(rightEdge, spawnHeight, 0f), Quaternion.identity);
+        }
     }
 }

@@ -33,7 +33,8 @@ public class Entity : MonoBehaviour
             DamageEntity(1);
         }
 
-        if (other.CompareTag("Obstacle"))
+        if (other.tag != gameObject.tag
+            && other.CompareTag("Obstacle"))
         {
             DamageEntity(1);
         }
