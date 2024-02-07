@@ -12,30 +12,30 @@ public class Entity : MonoBehaviour
 
     protected virtual void Update()
     {
-        EntityDeath(currentHealth);
+        CheckDeath(currentHealth);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            EntityDamaged(1);
-            Destroy(gameObject);
-        }
-
-        if (other.CompareTag("End"))
-        {
-
-        }
-    }
-
-    private void EntityDamaged(int damage)
+    protected void DamageEntity(int damage)
     {
         currentHealth -= damage;
     }
 
-    private void EntityDeath(int health)
+    protected void CheckDeath(int health)
     {
         if (currentHealth <= 0) Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag != gameObject.tag
+            && other.CompareTag("Player"))
+        {
+            DamageEntity(1);
+        }
+
+        if (other.CompareTag("Obstacle"))
+        {
+            DamageEntity(1);
+        }
     }
 }
