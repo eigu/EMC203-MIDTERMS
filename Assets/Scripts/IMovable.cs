@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public interface IMovable
 {
@@ -8,24 +7,18 @@ public interface IMovable
         obj.transform.Translate(direction * speed * Time.deltaTime);
     }
 
-    public static void MoveVertical(Transform obj, float speed)
+    public static void MoveVertical(Transform obj, float range, float verticalSpeed)
     {
-        Vector3 initialPosition = obj.transform.position;
+        float newY = Mathf.Cos(verticalSpeed) * range * Time.deltaTime;
 
-        float y = Mathf.Sin(Time.time * speed);
-
-        Vector3 offset = new Vector3(0, y, 0);
-        obj.transform.position = initialPosition + offset;
+        obj.transform.position += Vector3.up * newY;
     }
 
-    public static void MoveInCircle(Transform obj, float speed)
+    public static void MoveInCircle(Transform obj, float range, float circularSpeed)
     {
-        Vector3 center = obj.transform.position;
+        float newX = Mathf.Sin(circularSpeed) * range * Time.deltaTime;
+        float newY = Mathf.Cos(circularSpeed) * range * Time.deltaTime;
 
-        float x = Mathf.Cos(Time.time * speed);
-        float y = Mathf.Sin(Time.time * speed);
-
-        Vector3 offset = new Vector3(x, y, 0f);
-        obj.transform.position = center + offset;
+        obj.transform.position += new Vector3(newX, newY, 0f);
     }
 }

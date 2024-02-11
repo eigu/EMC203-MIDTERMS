@@ -10,33 +10,42 @@ public enum MovementPattern
 
 public class ObstacleMovement : MonoBehaviour
 {
-    [SerializeField] private float speed;
     [SerializeField] MovementPattern movementPattern;
+
+    [SerializeField] private float speed;
+    [SerializeField] private float range;
+
+    private float movementTimer;
 
     private void Start()
     {
-        RandomizeMovementPattern();
+        RandomizeMovement();
     }
 
-    private void LateUpdate()
+    private void Update()
     {
+        movementTimer += Time.deltaTime;
+
         switch (movementPattern)
         {
             case MovementPattern.FastAppraoching:
                 IMovable.Move(transform, Vector3.left, speed);
                 break;
             case MovementPattern.Vertical:
-                IMovable.MoveVertical(transform, speed); ;
+                IMovable.MoveVertical(transform, range, movementTimer); ;
                 break;
             case MovementPattern.Spherical:
-                IMovable.MoveInCircle(transform, speed);
+                IMovable.MoveInCircle(transform, range,movementTimer);
                 break;
         }
     }
 
-    private void RandomizeMovementPattern()
+    private void RandomizeMovement()
     {
         int randomIndex = UnityEngine.Random.Range(0, Enum.GetNames(typeof(MovementPattern)).Length);
         movementPattern = (MovementPattern)randomIndex;
+
+        speed = UnityEngine.Random.Range(10f, 50f);
+        range = UnityEngine.Random.Range(10f, 50f);
     }
 }

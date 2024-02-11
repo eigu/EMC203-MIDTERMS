@@ -36,6 +36,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move(Vector3 point)
     {
-        transform.position = Vector3.Lerp(transform.position, point, Time.deltaTime * speed);
+        transform.position = Vector3.Lerp(transform.position, point, speed * Time.deltaTime);
     }
 }

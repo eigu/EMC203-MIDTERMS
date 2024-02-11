@@ -1,42 +1,44 @@
+using System.Collections;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
     [SerializeField] protected private int maxHealth;
-    [SerializeField] protected private int currentHealth;
+    public int currentHealth;
+
+    private bool hasTakenDamage = false;
 
     protected virtual void Start()
     {
         currentHealth = maxHealth;
     }
-
-    protected virtual void Update()
-    {
-        CheckDeath(currentHealth);
-    }
-
     protected void DamageEntity(int damage)
     {
-        currentHealth -= damage;
+        if (currentHealth <= 0) Destroy(gameObject);
+
+        if (!hasTakenDamage && currentHealth > 0)
+        {
+            hasTakenDamage = true;
+            currentHealth -= damage;
+        }
+
+        StartCoroutine(ResetDamageFlag());
     }
 
-    protected void CheckDeath(int health)
+    private IEnumerator ResetDamageFlag()
     {
-        if (currentHealth <= 0) Destroy(gameObject);
+        yield return new WaitForSeconds(0.3f);
+        hasTakenDamage = false;
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag != gameObject.tag
-            && other.CompareTag("Player"))
+        if (other.tag == gameObject.tag)
         {
-            DamageEntity(1);
+            return;
         }
 
-        if (other.tag != gameObject.tag
-            && other.CompareTag("Obstacle"))
-        {
-            DamageEntity(1);
-        }
+        DamageEntity(1);
     }
 }

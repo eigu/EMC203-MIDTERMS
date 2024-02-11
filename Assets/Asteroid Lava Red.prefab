@@ -66,8 +66,8 @@ GameObject:
   - component: {fileID: 3807247079693209738}
   - component: {fileID: 8242669430283976088}
   - component: {fileID: 7288760275848702324}
-  - component: {fileID: 1891156970117702428}
   - component: {fileID: 5200708404311755717}
+  - component: {fileID: 1891156970117702428}
   m_Layer: 0
   m_Name: Asteroid Lava Red
   m_TagString: Obstacle
@@ -156,20 +156,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 1
   currentHealth: 0
---- !u!114 &1891156970117702428
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7704181678436368251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 461b71e2dc2dcd04287932a814b3eaf6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  movementPattern: 0
 --- !u!54 &5200708404311755717
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -196,4 +182,19 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 0
+--- !u!114 &1891156970117702428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7704181678436368251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 461b71e2dc2dcd04287932a814b3eaf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementPattern: 0
+  speed: 0
+  range: 0

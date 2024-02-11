@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 33897395972808092}
   - component: {fileID: 23934304819795232}
   - component: {fileID: 1567251669811868720}
-  - component: {fileID: 2447110802181736080}
   - component: {fileID: 6110827073233490961}
+  - component: {fileID: 2447110802181736080}
   m_Layer: 0
   m_Name: Mine Sample 1
   m_TagString: Obstacle
@@ -101,20 +101,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 1
   currentHealth: 0
---- !u!114 &2447110802181736080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1041803199959140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 461b71e2dc2dcd04287932a814b3eaf6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  movementPattern: 0
 --- !u!54 &6110827073233490961
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -141,7 +127,22 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 0
+--- !u!114 &2447110802181736080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041803199959140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 461b71e2dc2dcd04287932a814b3eaf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementPattern: 0
+  speed: 0
+  range: 0
 --- !u!1 &1163411048238188
 GameObject:
   m_ObjectHideFlags: 0
